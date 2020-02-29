@@ -13,7 +13,7 @@ jobs:
       - name: Deploy
         run: |
           npm install
-          REACT_APP_API_URL=//api.fredericpaurisse.fr npm run build
+          REACT_APP_API_URL=//api.fredericpaurisse.fr/ npm run build
           sshpass -p ${{secrets.SSH_PASS}} \
           rsync -e "ssh -o StrictHostKeyChecking=no" \
           -av --delete ./build/ \
