@@ -17,4 +17,4 @@ jobs:
           sshpass -p ${{secrets.SSH_PASS}} \
           rsync -e "ssh -o StrictHostKeyChecking=no" \
           -av --delete ./build/ \
-          ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/var/www/portfolio-admin/
+          ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/var/www/portfolio/portfolio-admin/
