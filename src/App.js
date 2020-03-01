@@ -4,6 +4,7 @@ import './App.css';
 import WorksListPage from './pages/WorksListPage';
 import WorkCreatePage from './pages/WorkCreatePage';
 import WorkEditPage from './pages/WorkEditPage';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -12,11 +13,14 @@ function App() {
         <Route exact path="/">
           <WorksListPage />
         </Route>
-        <Route path="/create">
+        <Route exact path="/create">
           <WorkCreatePage />
         </Route>
-        <Route path="/edit/:slug">
+        <Route exact path="/edit/:slug">
           <WorkEditPage />
+        </Route>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
     </div>
