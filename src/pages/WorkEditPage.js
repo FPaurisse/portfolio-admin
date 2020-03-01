@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api';
+import WorkForm from '../components/WorkForm';
 
 const WorkEditPage = () => {
   const { slug } = useParams();
@@ -14,6 +15,7 @@ const WorkEditPage = () => {
       {work && (
         `Edit ${work.title}`
       )}
+      <WorkForm data={work} />
     </div>
   );
 };
