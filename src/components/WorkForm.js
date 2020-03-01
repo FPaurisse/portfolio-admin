@@ -27,9 +27,9 @@ const WorkForm = ({ data }) => {
       <input name="primaryColor" type="text" defaultValue={data && data.primaryColor} />
       <input name="secondaryColor" type="text" defaultValue={data && data.secondaryColor} />
       <input name="optionalColor" type="text" defaultValue={data && data.optionalColor} />
-      <input name="image" type="file" defaultValue={data && data.image} />
+      <input name="image" type="file" />
       {data && <img alt="Work background" src={data && baseURL + data.image} />}
-      <input name="mockup" type="file" defaultValue={data && data.mockup} />
+      <input name="mockup" type="file" />
       {data && <img alt="Work mockup" src={data && baseURL + data.mockup} />}
       <button type="submit">{data ? 'Update' : 'create'}</button>
     </form>
