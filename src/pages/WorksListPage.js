@@ -15,6 +15,7 @@ const WorksListPage = () => {
         <div key={work.id}>
           <p>{work.title}</p>
           <Link to={`/edit/${work.slug}`}>Edit</Link>
+          <button type="button">Delete</button>
         </div>
       ))}
     </div>
