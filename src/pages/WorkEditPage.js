@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import api from '../api';
 import WorkForm from '../components/WorkForm';
 
@@ -11,12 +11,15 @@ const WorkEditPage = () => {
   }, [slug]);
 
   return (
-    <div className="WorkEditPage">
-      {work && (
-        `Edit ${work.title}`
-      )}
-      <WorkForm data={work} />
-    </div>
+    work
+      ? (
+        <div className="WorkEditPage">
+          {`Edit ${work.title}`}
+          <WorkForm data={work} />
+        </div>
+      )
+      : <Redirect to="/" />
+
   );
 };
 

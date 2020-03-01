@@ -1,9 +1,8 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const NotFound = () => (
-  <div className="NotFound">
-    <h1>Page 404</h1>
-  </div>
+  <Redirect to="/" />
 );
 
 export default NotFound;
