@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import useLocalStorage from 'react-use-localstorage';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import WorkPreview from '../utils/WorkPreview';
 import api from '../api';
 
@@ -36,6 +37,14 @@ const useStyles = makeStyles((theme) => ({
   },
   submitButton: {
     backgroundColor: '#33B0CB',
+  },
+  uploadLabel: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  CheckBoxIcon: {
+    marginLeft: '10px',
+    fontSize: '18px',
   },
 }));
 
@@ -167,8 +176,9 @@ const WorkForm = ({ data }) => {
       <div className={classes.buttons}>
         <ButtonGroup fullWidth>
           <Button>
-            <label htmlFor="image">
+            <label htmlFor="image" className={classes.uploadLabel}>
               Upload background
+              {imagePreview && <CheckBoxIcon className={classes.CheckBoxIcon} />}
               <input
                 required
                 accept="image/*"
@@ -181,8 +191,9 @@ const WorkForm = ({ data }) => {
             </label>
           </Button>
           <Button>
-            <label htmlFor="mockup">
+            <label htmlFor="mockup" className={classes.uploadLabel}>
               Upload mockup
+              {mockupPreview && <CheckBoxIcon className={classes.CheckBoxIcon} />}
               <input
                 required
                 accept="image/*"
