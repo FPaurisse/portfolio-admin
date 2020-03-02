@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import useLocalStorage from 'react-use-localstorage';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import WorkPreview from '../utils/WorkPreview';
 import api from '../api';
 
@@ -42,9 +42,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  CheckBoxIcon: {
-    marginLeft: '10px',
+  icons: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
     fontSize: '18px',
+    marginLeft: '10px',
   },
 }));
 
@@ -178,7 +182,12 @@ const WorkForm = ({ data }) => {
           <Button>
             <label htmlFor="image" className={classes.uploadLabel}>
               Upload background
-              {imagePreview && <CheckBoxIcon className={classes.CheckBoxIcon} />}
+              {((data && data.image) || imagePreview)
+                && (
+                <div className={classes.icons}>
+                  <PhotoCameraIcon className={classes.icon} />
+                </div>
+                )}
               <input
                 required
                 accept="image/*"
@@ -193,7 +202,12 @@ const WorkForm = ({ data }) => {
           <Button>
             <label htmlFor="mockup" className={classes.uploadLabel}>
               Upload mockup
-              {mockupPreview && <CheckBoxIcon className={classes.CheckBoxIcon} />}
+              {((data && data.mockup) || mockupPreview)
+                && (
+                  <div className={classes.icons}>
+                    <PhotoCameraIcon className={classes.icon} />
+                  </div>
+                )}
               <input
                 required
                 accept="image/*"
