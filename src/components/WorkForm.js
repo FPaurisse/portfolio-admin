@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 window.onload = () => { localStorage.clear(); };
 
-const WorkForm = ({ data, isEdit }) => {
+const WorkForm = ({ data }) => {
   const classes = useStyles();
 
   const [titlePreview, setTitlePreview] = useLocalStorage('title', '');
@@ -193,7 +193,12 @@ const WorkForm = ({ data, isEdit }) => {
           </Button>
         </ButtonGroup>
       </div>
-      {isEdit && (
+      {imagePreview
+      && mockupPreview
+      && primaryColorPreview
+      && secondaryColorPreview
+      && optionalColorPreview
+      && titlePreview && (
       <div className={classes.preview}>
         <WorkPreview dataPreview={{
           data,
