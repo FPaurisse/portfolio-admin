@@ -30,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FAFAFA',
     padding: '30px',
   },
-  submitButton: {
+  submit: {
     display: 'flex',
     justifyContent: 'flex-end',
+  },
+  submitButton: {
+    backgroundColor: '#33B0CB',
   },
 }));
 
@@ -193,12 +196,12 @@ const WorkForm = ({ data }) => {
           </Button>
         </ButtonGroup>
       </div>
-      {imagePreview
+      {((imagePreview
       && mockupPreview
       && primaryColorPreview
       && secondaryColorPreview
       && optionalColorPreview
-      && titlePreview && (
+      && titlePreview) || data) && (
       <div className={classes.preview}>
         <WorkPreview dataPreview={{
           data,
@@ -213,8 +216,8 @@ const WorkForm = ({ data }) => {
         />
       </div>
       )}
-      <div className={classes.submitButton}>
-        <Button type="submit" variant="contained" color="primary" component="span">
+      <div className={classes.submit}>
+        <Button className={classes.submitButton} type="submit" variant="contained" color="primary" component="span">
           {data ? 'Update work' : 'Create work'}
         </Button>
       </div>
