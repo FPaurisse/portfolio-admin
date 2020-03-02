@@ -12,6 +12,7 @@
     "clsx": "^1.1.0",
     "dotenv": "^8.2.0",
     "material-ui-color-picker": "^3.4.0",
+    "material-ui-dropzone": "^2.4.8",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
