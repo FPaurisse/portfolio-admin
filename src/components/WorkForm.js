@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import ColorPicker from 'material-ui-color-picker';
 import api from '../api';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +47,7 @@ const WorkForm = ({ data }) => {
     >
       <div>
         <TextField
+          required
           id="title"
           name="title"
           label="Title"
@@ -56,6 +58,7 @@ const WorkForm = ({ data }) => {
       </div>
       <div>
         <TextField
+          required
           id="context"
           name="context"
           label="Context"
@@ -68,6 +71,7 @@ const WorkForm = ({ data }) => {
       </div>
       <div>
         <TextField
+          required
           id="tools"
           name="tools"
           label="Tools"
@@ -78,6 +82,7 @@ const WorkForm = ({ data }) => {
       </div>
       <div>
         <TextField
+          required
           id="categories"
           name="categories"
           label="Categories"
@@ -87,25 +92,28 @@ const WorkForm = ({ data }) => {
         />
       </div>
       <div>
-        <TextField
+        <ColorPicker
           id="primaryColor"
           name="primaryColor"
-          label="Primary Color"
+          label="Primary color"
           defaultValue={data && data.primaryColor}
+          onChange={(color) => console.log(color)}
           variant="outlined"
         />
-        <TextField
+        <ColorPicker
           id="secondaryColor"
           name="secondaryColor"
-          label="Secondary Color"
+          label="Secondary color"
           defaultValue={data && data.secondaryColor}
+          onChange={(color) => console.log(color)}
           variant="outlined"
         />
-        <TextField
+        <ColorPicker
           id="optionalColor"
           name="optionalColor"
-          label="Optional Color"
+          label="Optional color"
           defaultValue={data && data.optionalColor}
+          onChange={(color) => console.log(color)}
           variant="outlined"
         />
       </div>
