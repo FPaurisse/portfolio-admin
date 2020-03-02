@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import useLocalStorage from 'react-use-localstorage';
 import WorkPreview from '../utils/WorkPreview';
@@ -19,14 +20,25 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  card: {
-    margin: theme.spacing(2, 0),
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  preview: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: '#FAFAFA',
+    padding: '30px',
+  },
+  submitButton: {
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 }));
 
 window.onload = () => { localStorage.clear(); };
 
-const WorkForm = ({ data }) => {
+const WorkForm = ({ data, isEdit }) => {
   const classes = useStyles();
 
   const [titlePreview, setTitlePreview] = useLocalStorage('title', '');
@@ -149,48 +161,58 @@ const WorkForm = ({ data }) => {
           fullWidth
         />
       </div>
-      <div>
-        <label htmlFor="image">
-          <input
-            accept="image/*"
-            className={classes.inputFile}
-            id="image"
-            name="image"
-            type="file"
-            onChange={(e) => imageStorage(e, 'image')}
-          />
-          <Button variant="contained" color="primary" component="span">
-            Upload background
+      <div className={classes.buttons}>
+        <ButtonGroup fullWidth>
+          <Button>
+            <label htmlFor="image">
+              Upload background
+              <input
+                required
+                accept="image/*"
+                className={classes.inputFile}
+                id="image"
+                name="image"
+                type="file"
+                onChange={(e) => imageStorage(e, 'image')}
+              />
+            </label>
           </Button>
-        </label>
-      </div>
-      <div>
-        <label htmlFor="mockup">
-          <input
-            accept="image/*"
-            className={classes.inputFile}
-            id="mockup"
-            name="mockup"
-            type="file"
-            onChange={(e) => imageStorage(e, 'mockup')}
-          />
-          <Button variant="contained" color="primary" component="span">
-            Upload mockup
+          <Button>
+            <label htmlFor="mockup">
+              Upload mockup
+              <input
+                required
+                accept="image/*"
+                className={classes.inputFile}
+                id="mockup"
+                name="mockup"
+                type="file"
+                onChange={(e) => imageStorage(e, 'mockup')}
+              />
+            </label>
           </Button>
-        </label>
+        </ButtonGroup>
       </div>
-      <WorkPreview dataPreview={{
-        data,
-        baseURL,
-        titlePreview,
-        primaryColorPreview,
-        secondaryColorPreview,
-        optionalColorPreview,
-        imagePreview,
-        mockupPreview,
-      }}
-      />
-      <button type="submit">{data ? 'Update' : 'create'}</button>
+      {isEdit && (
+      <div className={classes.preview}>
+        <WorkPreview dataPreview={{
+          data,
+          baseURL,
+          titlePreview,
+          primaryColorPreview,
+          secondaryColorPreview,
+          optionalColorPreview,
+          imagePreview,
+          mockupPreview,
+        }}
+        />
+      </div>
+      )}
+      <div className={classes.submitButton}>
+        <Button type="submit" variant="contained" color="primary" component="span">
+          {data ? 'Update work' : 'Create work'}
+        </Button>
+      </div>
     </form>
   );
 };

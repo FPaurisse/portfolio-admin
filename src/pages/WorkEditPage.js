@@ -28,7 +28,7 @@ const WorkEditPage = () => {
             <Typography component="h2" variant="h6" className={classes.title} gutterBottom>
               {`Edit "${work.title}"`}
             </Typography>
-            <WorkForm data={work} />
+            <WorkForm data={work} isEdit />
           </>
         )}
     </div>
