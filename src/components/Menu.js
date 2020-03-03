@@ -29,26 +29,6 @@ const Menu = () => {
           </ListItemText>
         </ListItem>
       </Link>
-      <Link to="/edit/about" className={classes.link}>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText>
-            About page
-          </ListItemText>
-        </ListItem>
-      </Link>
-      <Link to="/edit/contact" className={classes.link}>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText>
-            Contact page
-          </ListItemText>
-        </ListItem>
-      </Link>
     </List>
   );
 };
