@@ -5,19 +5,16 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import Typography from '@material-ui/core/Typography';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import api from '../api';
+import Header from '../components/Header';
 
-const useStyles = makeStyles((theme) => ({
-  title: {
+const useStyles = makeStyles(() => ({
+  editIcon: {
     color: '#33B0CB',
-  },
-  seeMore: {
-    marginTop: theme.spacing(3),
   },
 }));
 
@@ -35,9 +32,7 @@ const WorksListPage = () => {
 
   return (
     <div className="WorksListPage">
-      <Typography component="h2" variant="h6" className={classes.title} gutterBottom>
-      Works
-      </Typography>
+      <Header title="Works" />
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -55,7 +50,7 @@ const WorksListPage = () => {
               <TableCell align="right">
                 <Link to={`/edit/${work.slug}`}>
                   <IconButton color="primary" aria-label="Edit">
-                    <EditIcon />
+                    <EditIcon className={classes.editIcon} />
                   </IconButton>
                 </Link>
               </TableCell>
@@ -68,11 +63,6 @@ const WorksListPage = () => {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <button type="button">
-          See more works
-        </button>
-      </div>
     </div>
   );
 };

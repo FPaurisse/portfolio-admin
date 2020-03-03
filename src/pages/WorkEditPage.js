@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import api from '../api';
+import Header from '../components/Header';
 import WorkForm from '../components/WorkForm';
 
-const useStyles = makeStyles(() => ({
-  title: {
-    color: '#33B0CB',
-  },
-}));
-
 const WorkEditPage = () => {
-  const classes = useStyles();
-
   const { slug } = useParams();
   const [work, setWork] = useState(null);
   useEffect(() => {
@@ -25,9 +16,7 @@ const WorkEditPage = () => {
       {work
         && (
           <>
-            <Typography component="h2" variant="h6" className={classes.title} gutterBottom>
-              {`Edit "${work.title}"`}
-            </Typography>
+            <Header title={`Edit "${work.title}"`} />
             <WorkForm data={work} />
           </>
         )}

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -57,6 +58,8 @@ window.onload = () => { localStorage.clear(); };
 const WorkForm = ({ data }) => {
   const classes = useStyles();
 
+  const [redirectHome, setRedirectHome] = useState(false);
+
   const [titlePreview, setTitlePreview] = useLocalStorage('title', '');
   const [primaryColorPreview, setPrimaryColorPreview] = useLocalStorage('primaryColor', '');
   const [secondaryColorPreview, setSecondaryColorPreview] = useLocalStorage('secondaryColor', '');
@@ -78,14 +81,15 @@ const WorkForm = ({ data }) => {
     }
   };
 
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     if (data) {
-      api.put(`/works/${data.slug}`, formData);
+      await api.put(`/works/${data.slug}`, formData);
     } else {
-      api.post('/works', formData);
+      await api.post('/works', formData);
     }
+    setRedirectHome(true);
   };
 
   const baseURL = process.env.REACT_APP_API_URL || '';
@@ -95,7 +99,6 @@ const WorkForm = ({ data }) => {
       className={classes.WorkForm}
       encType="multipart/form-data"
       onSubmit={formSubmit}
-      noValidate
       autoComplete="off"
     >
       <div>
@@ -181,7 +184,7 @@ const WorkForm = ({ data }) => {
         <ButtonGroup fullWidth>
           <Button>
             <label htmlFor="image" className={classes.uploadLabel}>
-              Upload background
+              Upload background *
               {((data && data.image) || imagePreview)
                 && (
                 <div className={classes.icons}>
@@ -201,7 +204,7 @@ const WorkForm = ({ data }) => {
           </Button>
           <Button>
             <label htmlFor="mockup" className={classes.uploadLabel}>
-              Upload mockup
+              Upload mockup *
               {((data && data.mockup) || mockupPreview)
                 && (
                   <div className={classes.icons}>
@@ -246,6 +249,7 @@ const WorkForm = ({ data }) => {
           {data ? 'Update work' : 'Create work'}
         </Button>
       </div>
+      {redirectHome && <Redirect to="/" />}
     </form>
   );
 };
