@@ -16,6 +16,9 @@ const useStyles = makeStyles(() => ({
   editIcon: {
     color: '#33B0CB',
   },
+  heading: {
+    fontWeight: 'bold',
+  },
 }));
 
 const WorksListPage = () => {
@@ -32,12 +35,12 @@ const WorksListPage = () => {
 
   return (
     <div className="WorksListPage">
-      <Header title="Works" />
+      <Header title="Work list" />
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Context</TableCell>
+            <TableCell className={classes.heading}>Title</TableCell>
+            <TableCell className={classes.heading}>Context</TableCell>
             <TableCell align="right" />
             <TableCell align="right" />
           </TableRow>

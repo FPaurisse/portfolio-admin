@@ -12,7 +12,10 @@ import AddIcon from '@material-ui/icons/Add';
 const useStyles = makeStyles(() => ({
   link: {
     textDecoration: 'none',
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: 'rgba(0, 0, 0, 0.80)',
+  },
+  list: {
+    backgroundColor: '#FAFAFA',
   },
 }));
 
@@ -20,7 +23,7 @@ const Menu = () => {
   const classes = useStyles();
 
   return (
-    <List>
+    <List className={classes.list}>
       <Link to="/" className={classes.link}>
         <ListItem button>
           <ListItemIcon>
