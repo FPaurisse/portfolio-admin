@@ -242,7 +242,7 @@ const WorkForm = ({ data }) => {
       </div>
       )}
       <div className={classes.submit}>
-        <Button className={classes.submitButton} type="submit" variant="contained" color="primary" component="span">
+        <Button className={classes.submitButton} type="submit" variant="contained" color="primary" component="button">
           {data ? 'Update work' : 'Create work'}
         </Button>
       </div>
