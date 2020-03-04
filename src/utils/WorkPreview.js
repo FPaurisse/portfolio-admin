@@ -9,6 +9,8 @@ const Work = ({ dataPreview }) => {
     primaryColorPreview,
     secondaryColorPreview,
     optionalColorPreview,
+    widthPreview,
+    heightPreview,
     titlePreview,
     data,
   } = dataPreview;
@@ -41,6 +43,8 @@ const Work = ({ dataPreview }) => {
         className={workStyles.mockup}
         style={{
           backgroundImage: `url(${mockupPreview || baseURL + data.mockup})`,
+          width: `${widthPreview}%`,
+          height: `${heightPreview}%`,
         }}
       />
     </div>

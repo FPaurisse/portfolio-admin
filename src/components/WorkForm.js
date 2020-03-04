@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   preview: {
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#EEEEEE',
     padding: '30px',
   },
   submit: {
@@ -66,6 +66,8 @@ const WorkForm = ({ data }) => {
   const [optionalColorPreview, setOptionalColorPreview] = useLocalStorage('optionalColor', '');
   const [imagePreview, setImagePreview] = useLocalStorage('image', '');
   const [mockupPreview, setMockupPreview] = useLocalStorage('mockup', '');
+  const [widthPreview, setWidthPreview] = useLocalStorage('width', data && data.width ? data.width : '100');
+  const [heightPreview, setHeightPreview] = useLocalStorage('height', data && data.height ? data.height : '100');
 
   const imageStorage = (e, file) => {
     if (e.target.files) {
@@ -89,6 +91,7 @@ const WorkForm = ({ data }) => {
     } else {
       await api.post('/works', formData);
     }
+    window.onload = () => { localStorage.clear(); };
     setRedirectHome(true);
   };
 
@@ -192,7 +195,6 @@ const WorkForm = ({ data }) => {
                 </div>
                 )}
               <input
-                required
                 accept="image/*"
                 className={classes.inputFile}
                 id="image"
@@ -200,6 +202,7 @@ const WorkForm = ({ data }) => {
                 type="file"
                 onChange={(e) => imageStorage(e, 'image')}
               />
+              <input type="hidden" required defaultValue={data && data.image ? data.image : imagePreview} />
             </label>
           </Button>
           <Button>
@@ -212,7 +215,6 @@ const WorkForm = ({ data }) => {
                   </div>
                 )}
               <input
-                required
                 accept="image/*"
                 className={classes.inputFile}
                 id="mockup"
@@ -220,6 +222,7 @@ const WorkForm = ({ data }) => {
                 type="file"
                 onChange={(e) => imageStorage(e, 'mockup')}
               />
+              <input type="hidden" required defaultValue={data && data.mockup ? data.mockup : mockupPreview} />
             </label>
           </Button>
         </ButtonGroup>
@@ -238,12 +241,38 @@ const WorkForm = ({ data }) => {
           primaryColorPreview,
           secondaryColorPreview,
           optionalColorPreview,
+          widthPreview,
+          heightPreview,
           imagePreview,
           mockupPreview,
         }}
         />
       </div>
       )}
+      <div className={classes.pickers}>
+        <TextField
+          required
+          id="width"
+          name="width"
+          label="Width (%)"
+          type="number"
+          defaultValue={data && data.width ? data.width : widthPreview}
+          variant="outlined"
+          onChange={(e) => setWidthPreview(e.target.value)}
+          fullWidth
+        />
+        <TextField
+          required
+          id="height"
+          name="height"
+          label="Height (%)"
+          type="number"
+          defaultValue={data && data.height ? data.height : heightPreview}
+          variant="outlined"
+          onChange={(e) => setHeightPreview(e.target.value)}
+          fullWidth
+        />
+      </div>
       <div className={classes.submit}>
         <Button className={classes.submitButton} type="submit" variant="contained" color="primary" component="button">
           {data ? 'Update work' : 'Create work'}

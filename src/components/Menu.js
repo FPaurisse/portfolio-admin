@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,12 +10,16 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles(() => ({
+  list: {
+    padding: '0',
+  },
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.80)',
+    display: 'flex',
   },
-  list: {
-    backgroundColor: '#FAFAFA',
+  active: {
+    backgroundColor: '#EEEEEE',
   },
 }));
 
@@ -24,7 +28,8 @@ const Menu = () => {
 
   return (
     <List className={classes.list}>
-      <Link to="/" className={classes.link}>
+      <Divider />
+      <NavLink exact to="/" activeClassName={classes.active} className={classes.link}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />
@@ -33,8 +38,8 @@ const Menu = () => {
             Work list
           </ListItemText>
         </ListItem>
-      </Link>
-      <Link to="/create" className={classes.link}>
+      </NavLink>
+      <NavLink to="/create" activeClassName={classes.active} className={classes.link}>
         <ListItem button>
           <ListItemIcon>
             <AddIcon />
@@ -43,7 +48,7 @@ const Menu = () => {
             Add work
           </ListItemText>
         </ListItem>
-      </Link>
+      </NavLink>
       <Divider />
     </List>
   );
