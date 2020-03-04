@@ -46,24 +46,25 @@ const WorksListPage = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {works.map((work) => (
-            <TableRow key={work.id}>
-              <TableCell>{work.title}</TableCell>
-              <TableCell>{work.context}</TableCell>
-              <TableCell align="right">
-                <Link to={`/edit/${work.slug}`}>
-                  <IconButton color="primary" aria-label="Edit">
-                    <EditIcon className={classes.editIcon} />
+          {works
+            .map((work) => (
+              <TableRow key={work.id}>
+                <TableCell>{work.title}</TableCell>
+                <TableCell>{work.context}</TableCell>
+                <TableCell align="right">
+                  <Link to={`/edit/${work.slug}`}>
+                    <IconButton color="primary" aria-label="Edit">
+                      <EditIcon className={classes.editIcon} />
+                    </IconButton>
+                  </Link>
+                </TableCell>
+                <TableCell align="right">
+                  <IconButton aria-label="Delete" onClick={() => deleteWork(work.id)}>
+                    <DeleteIcon />
                   </IconButton>
-                </Link>
-              </TableCell>
-              <TableCell align="right">
-                <IconButton aria-label="Delete" onClick={() => deleteWork(work.id)}>
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>
